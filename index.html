@@ -300,15 +300,17 @@
       observer.observe(el);
     });
 
-    // Hero pixel reveal effect
+    // Hero pixel scatter effect
     (() => {
       const hero = document.getElementById('hero');
       const img = document.getElementById('heroBgImg');
       const canvas = document.getElementById('heroPixelOverlay');
       const ctx = canvas.getContext('2d');
-      const PIXEL_SIZE = 12;
-      const REVEAL_RADIUS = 160;
+      const PIXEL_SIZE = 10;
+      const PUSH_RADIUS = 150;
+      const PUSH_FORCE = 18;
       let mouseX = -1000, mouseY = -1000;
+      let particles = [];
       let animFrame;
       let ready = false;
 
@@ -316,15 +318,14 @@
         canvas.width = hero.offsetWidth;
         canvas.height = hero.offsetHeight;
         ready = img.complete && img.naturalWidth > 0;
-        if (ready) draw();
+        if (ready) sampleAndCreate();
       }
 
-      function draw() {
+      function sampleAndCreate() {
         const w = canvas.width;
         const h = canvas.height;
-        ctx.clearRect(0, 0, w, h);
 
-        // Draw the full image first
+        // Draw image to sample colours
         const imgRatio = img.naturalWidth / img.naturalHeight;
         const canvasRatio = w / h;
         let sx, sy, sw, sh;
@@ -340,42 +341,81 @@
           sy = (img.naturalHeight - sh) / 2;
         }
 
-        // Draw pixelated version
-        // First draw tiny, then scale up
+        // Draw small to sample
         const tinyW = Math.ceil(w / PIXEL_SIZE);
         const tinyH = Math.ceil(h / PIXEL_SIZE);
-
-        // Draw image small
         ctx.imageSmoothingEnabled = true;
         ctx.drawImage(img, sx, sy, sw, sh, 0, 0, tinyW, tinyH);
-
-        // Read the tiny version
-        const tinyData = ctx.getImageData(0, 0, tinyW, tinyH);
+        const data = ctx.getImageData(0, 0, tinyW, tinyH);
         ctx.clearRect(0, 0, w, h);
 
-        // Draw each pixel as a block, skip area near mouse
+        particles = [];
         for (let py = 0; py < tinyH; py++) {
           for (let px = 0; px < tinyW; px++) {
-            const screenX = px * PIXEL_SIZE + PIXEL_SIZE / 2;
-            const screenY = py * PIXEL_SIZE + PIXEL_SIZE / 2;
-
-            const dx = screenX - mouseX;
-            const dy = screenY - mouseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            // Skip pixels inside reveal radius (shows sharp image beneath)
-            if (dist < REVEAL_RADIUS) continue;
-
-            // Fade at edge
-            const fade = Math.min(1, (dist - REVEAL_RADIUS) / 60);
-
             const i = (py * tinyW + px) * 4;
-            const r = tinyData.data[i];
-            const g = tinyData.data[i + 1];
-            const b = tinyData.data[i + 2];
+            const r = data.data[i];
+            const g = data.data[i + 1];
+            const b = data.data[i + 2];
 
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${fade})`;
-            ctx.fillRect(px * PIXEL_SIZE, py * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+            const homeX = px * PIXEL_SIZE;
+            const homeY = py * PIXEL_SIZE;
+
+            particles.push({
+              homeX, homeY,
+              x: homeX, y: homeY,
+              vx: 0, vy: 0,
+              r, g, b,
+              size: PIXEL_SIZE,
+              alpha: 1,
+            });
+          }
+        }
+
+        if (!animFrame) animFrame = requestAnimationFrame(draw);
+      }
+
+      function draw() {
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        for (const p of particles) {
+          // Distance from mouse
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < PUSH_RADIUS && mouseX > 0) {
+            // Push away from mouse
+            const force = (1 - dist / PUSH_RADIUS) * PUSH_FORCE;
+            const angle = Math.atan2(dy, dx);
+            p.vx += Math.cos(angle) * force;
+            p.vy += Math.sin(angle) * force;
+            // Fade out as pushed
+            p.alpha = Math.max(0, p.alpha - 0.06);
+          } else {
+            // Spring back to home
+            p.alpha = Math.min(1, p.alpha + 0.03);
+          }
+
+          // Spring force back home
+          const pullX = (p.homeX - p.x) * 0.08;
+          const pullY = (p.homeY - p.y) * 0.08;
+          p.vx += pullX;
+          p.vy += pullY;
+
+          // Damping
+          p.vx *= 0.82;
+          p.vy *= 0.82;
+
+          // Update position
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Only draw if visible and somewhat near home
+          if (p.alpha > 0.01) {
+            ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${p.alpha})`;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
           }
         }
 
@@ -394,7 +434,7 @@
       });
 
       img.addEventListener('load', init);
-      window.addEventListener('resize', init);
+      window.addEventListener('resize', () => { cancelAnimationFrame(animFrame); animFrame = null; init(); });
       if (img.complete) init();
     })();
 
