@@ -805,23 +805,35 @@ p {
 .tools__grid {
   display: flex;
   justify-content: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   flex-wrap: wrap;
 }
 
 .tools__item {
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
   color: var(--text-faint);
   font-weight: 500;
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.06);
   transition: all var(--transition);
 }
 
 .tools__item:hover {
-  border-color: rgba(255,255,255,0.12);
   color: var(--text-secondary);
+}
+
+.tools__logo {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+  opacity: 0.6;
+  transition: opacity var(--transition);
+}
+
+.tools__item:hover .tools__logo {
+  opacity: 0.9;
 }
 
 /* --- Current Work --- */
