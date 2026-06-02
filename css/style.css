@@ -124,14 +124,8 @@ p {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) var(--space-md);
   transition: background var(--transition), backdrop-filter var(--transition);
-}
-
-.nav.scrolled {
-  background: rgba(7, 11, 10, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
 .nav__inner {
@@ -140,7 +134,15 @@ p {
   justify-content: space-between;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0.5rem 1.2rem;
+  background: rgba(7, 11, 10, 0.7);
+  backdrop-filter: blur(16px);
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav.scrolled .nav__inner {
+  background: rgba(7, 11, 10, 0.9);
 }
 
 .nav__logo {
@@ -288,26 +290,6 @@ p {
   gap: 0.6rem;
   align-items: center;
   flex-wrap: wrap;
-}
-
-/* Big SEGMENT text at bottom */
-.hero__bigtext {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  height: clamp(100px, 18vw, 220px);
-  pointer-events: none;
-  overflow: hidden;
-}
-
-#segmentCanvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
 }
 
 @media (max-width: 640px) {

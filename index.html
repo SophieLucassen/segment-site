@@ -47,10 +47,6 @@
       </div>
     </div>
 
-    <!-- Large SEGMENT text at bottom -->
-    <div class="hero__bigtext">
-      <canvas id="segmentCanvas"></canvas>
-    </div>
   </section>
 
   <!-- Clients -->
@@ -302,48 +298,6 @@
       el.style.opacity = '0';
       observer.observe(el);
     });
-
-    // Pixelated SEGMENT text
-    (() => {
-      const canvas = document.getElementById('segmentCanvas');
-      const ctx = canvas.getContext('2d');
-      const container = canvas.parentElement;
-
-      function render() {
-        const w = container.offsetWidth;
-        const h = container.offsetHeight;
-
-        // Render at low res then display at full size for pixel effect
-        const pixelScale = 4;
-        canvas.width = Math.ceil(w / pixelScale);
-        canvas.height = Math.ceil(h / pixelScale);
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Semi-transparent dark gradient behind text
-        const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        grad.addColorStop(0, 'rgba(7, 11, 10, 0)');
-        grad.addColorStop(0.3, 'rgba(7, 11, 10, 0.4)');
-        grad.addColorStop(1, 'rgba(7, 11, 10, 0.85)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw SEGMENT text
-        const fontSize = Math.floor(canvas.width * 0.135);
-        ctx.font = `900 ${fontSize}px serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-
-        // White text with slight transparency
-        ctx.fillStyle = 'rgba(245, 244, 240, 0.92)';
-        ctx.fillText('SEGMENT', canvas.width / 2, canvas.height * 0.55);
-      }
-
-      render();
-      window.addEventListener('resize', render);
-    })();
 
     // About photo pixel dissolve
     (() => {
