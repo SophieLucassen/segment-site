@@ -28,10 +28,11 @@
   <!-- Hero -->
   <section class="hero hero--editorial" id="hero">
     <div class="hero__bg">
-      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img">
+      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img hero__bg-blur">
+      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img hero__bg-sharp" id="heroSharp">
     </div>
 
-    <!-- Text box overlay (top-left, like Yardwork) -->
+    <!-- Text box overlay (left-center) -->
     <div class="hero__textbox">
       <div class="hero__eyebrow animate-in">Based in Guernsey, with a focus on tech & SaaS</div>
       <h1 class="hero__title animate-in">Fractional marketing that keeps things moving.</h1>
@@ -298,6 +299,25 @@
       el.style.opacity = '0';
       observer.observe(el);
     });
+
+    // Hero blur reveal effect
+    (() => {
+      const hero = document.getElementById('hero');
+      const sharp = document.getElementById('heroSharp');
+      if (!hero || !sharp) return;
+      const radius = 180;
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        sharp.style.clipPath = `circle(${radius}px at ${x}px ${y}px)`;
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        sharp.style.clipPath = 'circle(0px at 50% 50%)';
+      });
+    })();
 
     // About photo pixel dissolve
     (() => {
