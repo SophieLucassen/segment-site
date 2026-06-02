@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Get in touch with Segment. No pitch, no commitment, just a conversation about your marketing.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Contact - Segment">
+  <meta property="og:description" content="Get in touch with Segment. No pitch, no commitment.">
+  <meta property="og:image" content="img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Contact, Segment</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -39,7 +44,8 @@
       <div class="contact__grid">
 
         <!-- Form -->
-        <div class="contact__form">
+        <form class="contact__form" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact">
           <div class="form-group">
             <label for="name">Your name</label>
             <input type="text" id="name" name="name" placeholder="Sophie Lucassen">
@@ -70,6 +76,7 @@
             <textarea id="message" name="message" placeholder="What are you working on? What's the challenge? No need to be formal, just tell us what's going on."></textarea>
           </div>
           <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">Send message</button>
+        </form>
         </div>
 
         <!-- Info -->

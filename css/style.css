@@ -13,6 +13,9 @@
   --green: #3DDC84;
   --green-dim: #2AA366;
   --green-glow: rgba(61, 220, 132, 0.15);
+  --gold: #F6D764;
+  --gold-dim: #D4B84E;
+  --gold-glow: rgba(246, 215, 100, 0.15);
   --lavender: #B8A9E8;
   --lavender-dim: #8B7BBF;
   --lavender-glow: rgba(184, 169, 232, 0.1);
@@ -176,9 +179,9 @@ p {
 .nav__cta {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--bg);
-  background: var(--green);
+  background: var(--gold);
   padding: 0.55rem 1.3rem;
   border-radius: 100px;
   transition: all var(--transition);
@@ -188,7 +191,7 @@ p {
   background: var(--white);
   color: var(--bg);
   transform: translateY(-1px);
-  box-shadow: 0 4px 24px var(--green-glow);
+  box-shadow: 0 4px 24px var(--gold-glow);
 }
 
 /* Mobile nav */
@@ -281,12 +284,12 @@ p {
 
 .hero__textbox .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 800;
   color: var(--white);
-  line-height: 1.15;
+  line-height: 1.1;
   margin-bottom: var(--space-sm);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .hero__textbox .hero__desc {
@@ -336,14 +339,15 @@ p {
 }
 
 .btn--primary {
-  background: var(--green);
+  background: var(--gold);
   color: var(--bg);
+  font-weight: 600;
 }
 
 .btn--primary:hover {
   background: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 24px var(--green-glow);
+  box-shadow: 0 4px 24px var(--gold-glow);
 }
 
 .btn--ghost {
@@ -361,13 +365,13 @@ p {
 .btn--link {
   background: none;
   padding: 0;
-  color: var(--green);
+  color: var(--gold);
   font-weight: 500;
   border-radius: 0;
 }
 
 .btn--link:hover {
-  color: var(--lavender);
+  color: var(--white);
 }
 
 .btn--link::after {
@@ -473,17 +477,10 @@ p {
   width: 100%;
   height: 100%;
   z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
 .about__image.dissolving #aboutPhoto {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.about__image.dissolving #aboutCanvas {
   opacity: 1;
 }
 
@@ -496,7 +493,7 @@ p {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  color: var(--green);
+  color: var(--gold);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
@@ -504,7 +501,7 @@ p {
 }
 
 .about__linkedin svg {
-  filter: drop-shadow(0 0 12px var(--green-glow));
+  filter: drop-shadow(0 0 12px var(--gold-glow));
   transition: transform var(--transition);
 }
 
@@ -557,7 +554,7 @@ p {
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--green);
+  color: var(--gold);
 }
 
 .about__stat-label {
@@ -604,7 +601,7 @@ p {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--green), var(--lavender));
+  background: linear-gradient(90deg, var(--green), var(--gold));
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -642,7 +639,7 @@ p {
 .service-card__desc {
   font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* --- Work / Projects --- */
@@ -743,7 +740,7 @@ p {
   right: -120px;
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, var(--green-glow), transparent 70%);
+  background: radial-gradient(circle, var(--gold-glow), transparent 70%);
   border-radius: 50%;
   filter: blur(40px);
 }
@@ -1057,8 +1054,8 @@ p {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px var(--green-glow);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
 }
 
 .form-group textarea {
