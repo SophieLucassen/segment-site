@@ -28,8 +28,8 @@
   <!-- Hero -->
   <section class="hero hero--editorial" id="hero">
     <div class="hero__bg">
-      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img hero__bg-blur">
-      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img hero__bg-sharp" id="heroSharp">
+      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img" id="heroBgImg">
+      <canvas id="heroPixelOverlay"></canvas>
     </div>
 
     <!-- Text box overlay (left-center) -->
@@ -300,23 +300,102 @@
       observer.observe(el);
     });
 
-    // Hero blur reveal effect
+    // Hero pixel reveal effect
     (() => {
       const hero = document.getElementById('hero');
-      const sharp = document.getElementById('heroSharp');
-      if (!hero || !sharp) return;
-      const radius = 180;
+      const img = document.getElementById('heroBgImg');
+      const canvas = document.getElementById('heroPixelOverlay');
+      const ctx = canvas.getContext('2d');
+      const PIXEL_SIZE = 12;
+      const REVEAL_RADIUS = 160;
+      let mouseX = -1000, mouseY = -1000;
+      let animFrame;
+      let ready = false;
+
+      function init() {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        ready = img.complete && img.naturalWidth > 0;
+        if (ready) draw();
+      }
+
+      function draw() {
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw the full image first
+        const imgRatio = img.naturalWidth / img.naturalHeight;
+        const canvasRatio = w / h;
+        let sx, sy, sw, sh;
+        if (imgRatio > canvasRatio) {
+          sh = img.naturalHeight;
+          sw = sh * canvasRatio;
+          sx = (img.naturalWidth - sw) / 2;
+          sy = 0;
+        } else {
+          sw = img.naturalWidth;
+          sh = sw / canvasRatio;
+          sx = 0;
+          sy = (img.naturalHeight - sh) / 2;
+        }
+
+        // Draw pixelated version
+        // First draw tiny, then scale up
+        const tinyW = Math.ceil(w / PIXEL_SIZE);
+        const tinyH = Math.ceil(h / PIXEL_SIZE);
+
+        // Draw image small
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, tinyW, tinyH);
+
+        // Read the tiny version
+        const tinyData = ctx.getImageData(0, 0, tinyW, tinyH);
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw each pixel as a block, skip area near mouse
+        for (let py = 0; py < tinyH; py++) {
+          for (let px = 0; px < tinyW; px++) {
+            const screenX = px * PIXEL_SIZE + PIXEL_SIZE / 2;
+            const screenY = py * PIXEL_SIZE + PIXEL_SIZE / 2;
+
+            const dx = screenX - mouseX;
+            const dy = screenY - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            // Skip pixels inside reveal radius (shows sharp image beneath)
+            if (dist < REVEAL_RADIUS) continue;
+
+            // Fade at edge
+            const fade = Math.min(1, (dist - REVEAL_RADIUS) / 60);
+
+            const i = (py * tinyW + px) * 4;
+            const r = tinyData.data[i];
+            const g = tinyData.data[i + 1];
+            const b = tinyData.data[i + 2];
+
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${fade})`;
+            ctx.fillRect(px * PIXEL_SIZE, py * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+          }
+        }
+
+        animFrame = requestAnimationFrame(draw);
+      }
 
       hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        sharp.style.clipPath = `circle(${radius}px at ${x}px ${y}px)`;
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
       });
 
       hero.addEventListener('mouseleave', () => {
-        sharp.style.clipPath = 'circle(0px at 50% 50%)';
+        mouseX = -1000;
+        mouseY = -1000;
       });
+
+      img.addEventListener('load', init);
+      window.addEventListener('resize', init);
+      if (img.complete) init();
     })();
 
     // About photo pixel dissolve
