@@ -478,10 +478,21 @@ p {
   height: 100%;
   z-index: 2;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.about__image.dissolving #aboutPhoto {
+.about__image.pixelating #aboutCanvas {
   opacity: 1;
+}
+
+.about__image.pixelating #aboutPhoto {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#aboutPhoto {
+  transition: opacity 0.4s ease;
 }
 
 .about__linkedin {
