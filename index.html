@@ -444,26 +444,30 @@
       if (img.complete) init();
     })();
 
-    // About photo — clear by default, pixel scatter on hover
+    // About photo — clear by default, pixel blob on hover
     (() => {
       const container = document.getElementById('aboutImage');
       const photo = document.getElementById('aboutPhoto');
       const canvas = document.getElementById('aboutCanvas');
       const ctx = canvas.getContext('2d');
-      const PIXEL_SIZE = 7;
-      const SCATTER_SPEED = 2.5;
-      let particles = [];
-      let animFrame;
+      const PIXEL_SIZE = 8;
+      const BLOB_RADIUS = 130;
+      let mouseX = -1000, mouseY = -1000;
       let isHovering = false;
-      let isInitialised = false;
-      let scatterProgress = 0;
+      let animFrame;
+      let tinyData = null;
+      let tinyW = 0, tinyH = 0;
+      let pixelAlphas = [];
+      let linkedInVisible = false;
 
       function init() {
         canvas.width = container.offsetWidth;
         canvas.height = container.offsetHeight;
+        sample();
       }
 
-      function sampleImage() {
+      function sample() {
+        if (!photo.complete || !photo.naturalWidth) return;
         const w = canvas.width;
         const h = canvas.height;
 
@@ -482,114 +486,99 @@
           sy = (photo.naturalHeight - sh) / 2;
         }
 
-        const tinyW = Math.ceil(w / PIXEL_SIZE);
-        const tinyH = Math.ceil(h / PIXEL_SIZE);
+        tinyW = Math.ceil(w / PIXEL_SIZE);
+        tinyH = Math.ceil(h / PIXEL_SIZE);
         ctx.imageSmoothingEnabled = true;
         ctx.drawImage(photo, sx, sy, sw, sh, 0, 0, tinyW, tinyH);
-        const data = ctx.getImageData(0, 0, tinyW, tinyH);
+        tinyData = ctx.getImageData(0, 0, tinyW, tinyH);
         ctx.clearRect(0, 0, w, h);
 
-        const cx = w / 2;
-        const cy = h / 2;
-
-        particles = [];
-        for (let py = 0; py < tinyH; py++) {
-          for (let px = 0; px < tinyW; px++) {
-            const i = (py * tinyW + px) * 4;
-            const homeX = px * PIXEL_SIZE;
-            const homeY = py * PIXEL_SIZE;
-
-            // Scatter direction: outward from center
-            const dx = homeX - cx;
-            const dy = homeY - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.8;
-            const speed = 2 + Math.random() * 5;
-
-            particles.push({
-              homeX, homeY,
-              x: homeX, y: homeY,
-              targetX: homeX + Math.cos(angle) * speed * 60,
-              targetY: homeY + Math.sin(angle) * speed * 60,
-              r: data.data[i],
-              g: data.data[i + 1],
-              b: data.data[i + 2],
-              size: PIXEL_SIZE,
-              alpha: 1,
-              delay: (dist / (Math.max(w, h) * 0.7)) + Math.random() * 0.15,
-            });
-          }
-        }
-        isInitialised = true;
+        // Track how "painted" each pixel is
+        pixelAlphas = new Float32Array(tinyW * tinyH);
       }
 
       function draw() {
+        if (!tinyData) return;
         const w = canvas.width;
         const h = canvas.height;
         ctx.clearRect(0, 0, w, h);
 
-        // Advance scatter progress
-        if (isHovering) {
-          scatterProgress = Math.min(1, scatterProgress + 0.018 * SCATTER_SPEED);
-        } else {
-          scatterProgress = Math.max(0, scatterProgress - 0.025 * SCATTER_SPEED);
+        let totalPainted = 0;
+
+        for (let py = 0; py < tinyH; py++) {
+          for (let px = 0; px < tinyW; px++) {
+            const idx = py * tinyW + px;
+            const screenX = px * PIXEL_SIZE + PIXEL_SIZE / 2;
+            const screenY = py * PIXEL_SIZE + PIXEL_SIZE / 2;
+
+            // Paint pixels near mouse
+            if (isHovering) {
+              const dx = screenX - mouseX;
+              const dy = screenY - mouseY;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < BLOB_RADIUS) {
+                const strength = (1 - dist / BLOB_RADIUS) * 0.12;
+                pixelAlphas[idx] = Math.min(1, pixelAlphas[idx] + strength);
+              }
+            }
+
+            // Fade out slowly when not hovering
+            if (!isHovering) {
+              pixelAlphas[idx] = Math.max(0, pixelAlphas[idx] - 0.02);
+            }
+
+            const alpha = pixelAlphas[idx];
+            if (alpha > 0.01) {
+              totalPainted++;
+              const i = idx * 4;
+              const r = tinyData.data[i];
+              const g = tinyData.data[i + 1];
+              const b = tinyData.data[i + 2];
+              ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+              ctx.fillRect(px * PIXEL_SIZE, py * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+            }
+          }
         }
 
-        // Update classes
-        if (scatterProgress > 0.01) {
+        // Show/hide photo based on paint coverage
+        const coverage = totalPainted / (tinyW * tinyH);
+        if (coverage > 0.01) {
           container.classList.add('pixelating');
-        } else {
-          container.classList.remove('pixelating');
         }
 
-        if (scatterProgress > 0.6) {
+        if (coverage > 0.4) {
           container.classList.add('dissolved');
         } else {
           container.classList.remove('dissolved');
         }
 
-        let anyVisible = false;
-
-        for (const p of particles) {
-          const t = Math.max(0, Math.min(1, (scatterProgress - p.delay) / (1 - p.delay)));
-          const eased = t * t * (3 - 2 * t); // smoothstep
-
-          p.x = p.homeX + (p.targetX - p.homeX) * eased;
-          p.y = p.homeY + (p.targetY - p.homeY) * eased;
-          p.alpha = 1 - eased;
-          const size = PIXEL_SIZE + eased * 2;
-
-          if (p.alpha > 0.01) {
-            anyVisible = true;
-            ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${p.alpha})`;
-            ctx.fillRect(p.x, p.y, size, size);
-          }
-        }
-
-        if (scatterProgress > 0 || isHovering) {
-          animFrame = requestAnimationFrame(draw);
-        } else {
+        if (coverage < 0.005 && !isHovering) {
+          container.classList.remove('pixelating');
           animFrame = null;
+          return;
         }
+
+        animFrame = requestAnimationFrame(draw);
       }
 
-      container.addEventListener('mouseenter', () => {
-        if (!photo.complete || !photo.naturalWidth) return;
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
         isHovering = true;
-        init();
-        if (!isInitialised) sampleImage();
         if (!animFrame) animFrame = requestAnimationFrame(draw);
       });
 
       container.addEventListener('mouseleave', () => {
         isHovering = false;
+        mouseX = -1000;
+        mouseY = -1000;
         if (!animFrame) animFrame = requestAnimationFrame(draw);
       });
 
-      window.addEventListener('resize', () => {
-        init();
-        isInitialised = false;
-      });
+      photo.addEventListener('load', init);
+      window.addEventListener('resize', () => { init(); pixelAlphas = new Float32Array(tinyW * tinyH); });
+      if (photo.complete) init();
     })();
 
     // === FOOTER EASTER EGGS ===
