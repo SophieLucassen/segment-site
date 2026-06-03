@@ -2,7 +2,7 @@
    SEGMENT — Bold Tech-Organic Design
    ======================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 /* --- Design Tokens --- */
 :root {
@@ -24,7 +24,7 @@
   --text-faint: #5A5850;
   --white: #F5F4F0;
 
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Outfit', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
 
@@ -80,9 +80,9 @@ a { color: inherit; text-decoration: none; }
 /* --- Typography --- */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 h1 { font-size: clamp(2.8rem, 7vw, 5rem); }
@@ -151,11 +151,10 @@ p {
 
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 800;
-  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--white);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
 }
 
 .nav__links {
@@ -287,11 +286,11 @@ p {
 .hero__textbox .hero__title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-  font-weight: 800;
+  font-weight: 300;
   color: var(--white);
   line-height: 1.2;
   margin-bottom: var(--space-sm);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .hero__textbox .hero__desc {
@@ -566,7 +565,7 @@ p {
 .about__stat-value {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 300;
   color: var(--gold);
 }
 
@@ -645,7 +644,7 @@ p {
 .service-card__title {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 0.4rem;
 }
@@ -726,7 +725,7 @@ p {
 .project-card__title {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 0.4rem;
 }
@@ -946,7 +945,7 @@ p {
 .status-board__card-title {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 0.25rem;
 }
@@ -1005,11 +1004,10 @@ p {
 
 .footer__logo {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 800;
-  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--white);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
 }
 
 .footer__links {
