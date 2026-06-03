@@ -2,7 +2,7 @@
    SEGMENT — Bold Tech-Organic Design
    ======================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 /* --- Design Tokens --- */
 :root {
@@ -24,8 +24,9 @@
   --text-faint: #5A5850;
   --white: #F5F4F0;
 
-  --font-display: 'Syne', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -80,8 +81,8 @@ a { color: inherit; text-decoration: none; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 h1 { font-size: clamp(2.8rem, 7vw, 5rem); }
@@ -150,11 +151,11 @@ p {
 
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 800;
+  font-style: italic;
   color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
 }
 
 .nav__links {
@@ -165,7 +166,8 @@ p {
 }
 
 .nav__link {
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   font-weight: 400;
   color: var(--text-secondary);
   transition: color var(--transition);
@@ -177,9 +179,9 @@ p {
 }
 
 .nav__cta {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--bg);
   background: var(--gold);
   padding: 0.55rem 1.3rem;
@@ -260,11 +262,11 @@ p {
 }
 
 .hero__textbox .hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
   color: var(--green);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: var(--space-sm);
   display: flex;
@@ -287,9 +289,9 @@ p {
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 800;
   color: var(--white);
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: var(--space-sm);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .hero__textbox .hero__desc {
@@ -406,10 +408,11 @@ p {
 }
 
 .clients__label {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   color: var(--text-faint);
   margin-bottom: var(--space-md);
   text-align: center;
@@ -568,7 +571,8 @@ p {
 }
 
 .about__stat-label {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   color: var(--text-faint);
 }
 
@@ -710,10 +714,11 @@ p {
 }
 
 .project-card__tag {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   color: var(--green);
   margin-bottom: 0.4rem;
 }
@@ -862,10 +867,11 @@ p {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--green);
 }
 
@@ -926,10 +932,11 @@ p {
 }
 
 .status-board__tag {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   color: var(--bg);
   background: var(--gold);
   padding: 0.15rem 0.5rem;
@@ -952,11 +959,12 @@ p {
 }
 
 .status-board__card-type {
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
   color: var(--text-faint);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 @media (max-width: 640px) {
@@ -999,9 +1007,9 @@ p {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 800;
+  font-style: italic;
   color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
 }
 
 .footer__links {
@@ -1011,7 +1019,8 @@ p {
 }
 
 .footer__link {
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--text-faint);
   transition: color var(--transition);
 }
