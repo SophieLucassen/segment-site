@@ -171,7 +171,7 @@
         <a href="projects.html" class="btn btn--link">See all projects</a>
       </div>
       <div class="work__grid">
-        <a href="projects.html" class="project-card"
+        <a href="projects.html" class="project-card">
           <div class="project-card__image">
             <div class="project-card__image-bg" style="background: url('img/bragi-ooh.jpg') center/cover;"></div>
           </div>
@@ -181,7 +181,7 @@
             <p class="project-card__desc">End-to-end OOH campaign for a data automation product. Copy, design direction, and rollout across airport locations.</p>
           </div>
         </a>
-        <a href="projects.html" class="project-card"
+        <a href="projects.html" class="project-card">
           <div class="project-card__image">
             <div class="project-card__image-bg" style="background: url('img/bragi-web.jpg') center/cover;"></div>
           </div>
@@ -191,7 +191,7 @@
             <p class="project-card__desc">Copy, images, site structure, and front-end optimisation for a data automation platform.</p>
           </div>
         </a>
-        <a href="projects.html" class="project-card"
+        <a href="projects.html" class="project-card">
           <div class="project-card__image">
             <div class="project-card__image-bg" style="background: url('img/seeker.jpg') center/cover;"></div>
           </div>
@@ -201,7 +201,7 @@
             <p class="project-card__desc">UX design for the homepage, blog, signup flow, and user dashboard of a Guernsey community platform.</p>
           </div>
         </a>
-        <a href="projects.html" class="project-card"
+        <a href="projects.html" class="project-card">
           <div class="project-card__image">
             <div class="project-card__image-bg" style="background: url('img/trollverse.jpg') center/cover;"></div>
           </div>
@@ -288,7 +288,8 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" id="footer">
+    <canvas id="footerGrid"></canvas>
     <div class="container">
       <div class="footer__inner">
         <a href="index.html" class="footer__logo">Segment</a>
@@ -298,7 +299,14 @@
           <li><a href="contact.html" class="footer__link">Contact</a></li>
           <li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>
         </ul>
-        <p class="footer__copy">Segment · Fractional marketing · Guernsey © 2026</p>
+        <div class="footer__copy">
+          <span>Segment</span>
+          <span class="footer__dot" id="dot1"></span>
+          <span>Fractional marketing</span>
+          <span class="footer__dot" id="dot2"></span>
+          <span>Guernsey © 2026<span class="footer__pixel" id="pixelTrigger" title="try clicking me"></span></span>
+        </div>
+        <a href="#" class="footer__source" id="viewSource">view-source</a>
       </div>
     </div>
   </footer>
@@ -598,6 +606,215 @@
       photo.addEventListener('load', init);
       window.addEventListener('resize', () => { init(); pixelAlphas = new Float32Array(tinyW * tinyH); });
       if (photo.complete) init();
+    })();
+
+    // === FOOTER EASTER EGGS ===
+
+    // 1. Grid that lights up as you scroll
+    (() => {
+      const footer = document.getElementById('footer');
+      const gridCanvas = document.getElementById('footerGrid');
+      const gCtx = gridCanvas.getContext('2d');
+      const CELL = 16;
+      const GAP = 1;
+      let cols, rows, cells = [];
+
+      function initGrid() {
+        gridCanvas.width = footer.offsetWidth;
+        gridCanvas.height = footer.offsetHeight;
+        cols = Math.ceil(gridCanvas.width / (CELL + GAP));
+        rows = Math.ceil(gridCanvas.height / (CELL + GAP));
+        cells = [];
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            cells.push({
+              x: c * (CELL + GAP),
+              y: r * (CELL + GAP),
+              delay: (c + r) / (cols + rows),
+              lit: false
+            });
+          }
+        }
+      }
+
+      function drawGrid(progress) {
+        gCtx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+        for (const cell of cells) {
+          const cellProgress = Math.max(0, Math.min(1, (progress - cell.delay * 0.6) / 0.4));
+          const alpha = cellProgress * 0.06;
+          if (alpha > 0.002) {
+            const isGreen = Math.random() > 0.92 && cellProgress > 0.5;
+            if (isGreen) {
+              gCtx.fillStyle = `rgba(61, 220, 132, ${alpha * 1.5})`;
+            } else {
+              gCtx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            }
+            gCtx.fillRect(cell.x, cell.y, CELL, CELL);
+          }
+        }
+      }
+
+      function onScroll() {
+        const rect = footer.getBoundingClientRect();
+        const windowH = window.innerHeight;
+        const footerVisible = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + rect.height)));
+        const progress = Math.pow(footerVisible, 1.5);
+        drawGrid(progress);
+      }
+
+      initGrid();
+      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', () => { initGrid(); onScroll(); });
+      onScroll();
+    })();
+
+    // 2. ASCII art in console
+    document.getElementById('viewSource').addEventListener('click', (e) => {
+      e.preventDefault();
+      console.clear();
+      console.log(`
+%c
+  ███████╗███████╗ ██████╗ ███╗   ███╗███████╗███╗   ██╗████████╗
+  ██╔════╝██╔════╝██╔════╝ ████╗ ████║██╔════╝████╗  ██║╚══██╔══╝
+  ███████╗█████╗  ██║  ███╗██╔████╔██║█████╗  ██╔██╗ ██║   ██║   
+  ╚════██║██╔══╝  ██║   ██║██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║   
+  ███████║███████╗╚██████╔╝██║ ╚═╝ ██║███████╗██║ ╚████║   ██║   
+  ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
+
+`, 'color: #3DDC84; font-family: monospace; font-size: 10px; line-height: 1.2;');
+
+      console.log(
+        '%c  Hey, you found the source. Nice one. 👋\n' +
+        '%c  Fractional marketing for tech & SaaS.\n' +
+        '%c  Built with HTML, CSS, and a bit of caffeine.\n\n' +
+        '%c  → linkedin.com/in/sophie-lucassen\n' +
+        '%c  → hello@segment.gg\n',
+        'color: #E8E6E1; font-size: 13px; font-family: monospace;',
+        'color: #9A9890; font-size: 12px; font-family: monospace;',
+        'color: #5A5850; font-size: 11px; font-family: monospace;',
+        'color: #3DDC84; font-size: 11px; font-family: monospace;',
+        'color: #3DDC84; font-size: 11px; font-family: monospace;'
+      );
+    });
+
+    // 3. Pixel trigger — pixelate the whole page for 3 seconds
+    (() => {
+      const trigger = document.getElementById('pixelTrigger');
+      let active = false;
+
+      trigger.addEventListener('click', () => {
+        if (active) return;
+        active = true;
+
+        // Create pixel canvas overlay
+        const overlay = document.createElement('canvas');
+        overlay.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;z-index:99998;pointer-events:none;';
+        overlay.width = Math.ceil(window.innerWidth / 8);
+        overlay.height = Math.ceil(window.innerHeight / 8);
+        overlay.style.imageRendering = 'pixelated';
+        document.body.appendChild(overlay);
+        const ctx = overlay.getContext('2d');
+
+        // Capture current page as pixels
+        const captureAndAnimate = () => {
+          const pixelSize = 8;
+          const w = overlay.width;
+          const h = overlay.height;
+
+          // Generate a pixelated version from random sampling
+          // (true html2canvas would need a library, so we fake it with the page colors)
+          const bodyBg = { r: 7, g: 11, b: 10 };
+          const green = { r: 61, g: 220, b: 132 };
+          const lavender = { r: 184, g: 169, b: 232 };
+          const white = { r: 232, g: 230, b: 225 };
+          const colors = [bodyBg, bodyBg, bodyBg, bodyBg, bodyBg, green, lavender, white, bodyBg, bodyBg];
+
+          let frame = 0;
+          const totalFrames = 90; // ~3 seconds at 30fps
+          const interval = 1000 / 30;
+
+          const animate = () => {
+            frame++;
+            const progress = frame / totalFrames;
+
+            // Phase 1 (0-0.15): pixelate in
+            // Phase 2 (0.15-0.85): hold with glitch
+            // Phase 3 (0.85-1): pixelate out
+            let intensity;
+            if (progress < 0.15) {
+              intensity = progress / 0.15;
+            } else if (progress < 0.85) {
+              intensity = 1;
+            } else {
+              intensity = 1 - (progress - 0.85) / 0.15;
+            }
+
+            ctx.clearRect(0, 0, w, h);
+
+            if (intensity > 0.01) {
+              for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                  const shouldDraw = Math.random() < intensity;
+                  if (shouldDraw) {
+                    // Determine color based on screen position
+                    const screenY = y / h;
+                    const screenX = x / w;
+                    let col;
+
+                    // Glitch: random color shifts
+                    if (Math.random() < 0.03 * intensity) {
+                      col = Math.random() > 0.5 ? green : lavender;
+                    } else {
+                      // Mostly dark with occasional light
+                      const rand = Math.random();
+                      if (rand < 0.75) {
+                        col = { r: bodyBg.r + Math.random() * 15, g: bodyBg.g + Math.random() * 15, b: bodyBg.b + Math.random() * 10 };
+                      } else if (rand < 0.88) {
+                        col = { r: 20 + Math.random() * 20, g: 30 + Math.random() * 20, b: 25 + Math.random() * 15 };
+                      } else if (rand < 0.95) {
+                        col = { r: green.r, g: green.g, b: green.b };
+                      } else {
+                        col = { r: lavender.r, g: lavender.g, b: lavender.b };
+                      }
+                    }
+
+                    ctx.fillStyle = `rgba(${col.r|0}, ${col.g|0}, ${col.b|0}, ${intensity * 0.9})`;
+                    ctx.fillRect(x, y, 1, 1);
+                  }
+                }
+              }
+
+              // Scanlines
+              if (intensity > 0.3) {
+                for (let y = 0; y < h; y += 2) {
+                  ctx.fillStyle = `rgba(0, 0, 0, ${0.15 * intensity})`;
+                  ctx.fillRect(0, y, w, 1);
+                }
+              }
+
+              // Random glitch bars
+              if (Math.random() < 0.15 * intensity) {
+                const barY = Math.random() * h | 0;
+                const barH = (1 + Math.random() * 3) | 0;
+                const shift = (Math.random() * 10 - 5) | 0;
+                const imgData = ctx.getImageData(0, barY, w, barH);
+                ctx.putImageData(imgData, shift, barY);
+              }
+            }
+
+            if (frame < totalFrames) {
+              setTimeout(animate, interval);
+            } else {
+              overlay.remove();
+              active = false;
+            }
+          };
+          animate();
+        };
+
+        // Small delay so overlay is in DOM
+        requestAnimationFrame(captureAndAnimate);
+      });
     })();
   </script>
 </body>
