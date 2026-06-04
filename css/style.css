@@ -689,6 +689,7 @@ p {
 .project-card__image {
   aspect-ratio: 16/10;
   overflow: hidden;
+  position: relative;
 }
 
 .project-card__image-bg {
@@ -696,6 +697,8 @@ p {
   height: 100%;
   object-fit: cover;
   display: block;
+  position: absolute;
+  inset: 0;
   transition: transform var(--transition);
 }
 
