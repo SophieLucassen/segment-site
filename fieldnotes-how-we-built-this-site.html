@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify with Claude Code. The honest version of building the Segment site, hours and AI included.">
+  <meta name="description" content="We rebuilt our own site by hand on Netlify with Claude Code. The honest version: a binned design, a colour off a lime, the AI we used, the hours it took, and a bug that's still live.">
   <title>How we built this site - Fieldnotes - Segment</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="How we built this site - Segment Fieldnotes">
-  <meta property="og:description" content="Framer to hand-coded on Netlify, with Claude Code. The design we binned, a lime that chose our palette, and a bug we still haven't fixed.">
+  <meta property="og:description" content="Framer to hand-coded on Netlify, with Claude Code. The design we binned, a lime that chose our palette, the hours, and a bug we still haven't fixed.">
   <meta property="og:image" content="img/fieldnotes-hero-design.jpg">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
@@ -30,9 +30,6 @@
     .article__body li { position: relative; padding-left: 1.4rem; font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.7rem; }
     .article__body li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
     .article__body code { font-family: var(--font-mono); font-size: 0.85em; color: var(--gold); background: var(--gold-glow); padding: 0.12em 0.4em; border-radius: 6px; }
-    .article__figure { margin: var(--space-lg) 0; }
-    .article__figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.08); }
-    .article__figure figcaption { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 0.7rem; text-align: center; }
     .todo { color: var(--gold); background: rgba(246,215,100,0.12); border-bottom: 1px dashed var(--gold-dim); padding: 0 0.25em; border-radius: 3px; font-style: normal; }
     .article__back { max-width: 720px; margin: 0 auto; padding: var(--space-lg) var(--space-md) 0; }
     .article__back a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); transition: color var(--transition); }
@@ -58,7 +55,7 @@
     <div class="article__inner">
       <div class="article__eyebrow">Fieldnotes</div>
       <h1 class="article__title">How we built this site</h1>
-      <p class="article__standfirst">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify with Claude Code. Along the way we designed a version we binned, took our accent colour off a photo of a lime, and shipped a bug we still haven't fixed. Here's the honest version, hours and AI included.</p>
+      <p class="article__standfirst">We rebuilt our own site by hand on Netlify for full ownership, faster changes, and a look that felt like us. We also ended up with a binned design, a colour pulled off a lime, an AI we'll own up to, and a bug that's still live. Here's what the rebuild taught us.</p>
       <p class="article__byline">Sophie &amp; Chris &middot; June 2026 &middot; 6 min read</p>
 
       <figure class="article__cover">
@@ -67,63 +64,63 @@
       </figure>
 
       <div class="article__body">
-        <p>You're reading this on the site it's about, which felt like the right place to start.</p>
-        <p>We spend most of our time helping other people's brands look and sound like themselves, so our own site sat near the bottom of the list for a while. When we finally built it, we wanted to do it properly and be honest about how it went. That's what Fieldnotes is for: the working out, not the finished case study. This is the first one.</p>
+        <p>You're reading this on the site it's about, which felt like the right place to start. We spend most of our time helping other people's brands look and sound like themselves, so our own site sat near the bottom of the list for a while. This is the working out of how it came together, not the tidy case study, and it's the first of these Fieldnotes.</p>
 
-        <h2>It started in Framer, and started sounding like a brochure</h2>
-        <p>Framer was the obvious place to begin. It's quick, it looks good with little effort, and we like working visually. For a while it was fine.</p>
-        <p>Two things changed our minds. The first was the copy. Left to a builder's momentum, it had drifted into a marketing voice neither of us talks in. Lines like "we keep it moving" and "a project we've loved working on" were performing energy rather than having any. The second was the tool itself. The further we pushed, the more we were designing around Framer instead of with it, and we wanted those decisions back. So we left: out of the builder, and into something we owned.</p>
+        <h2>We left the builder for a reason</h2>
+        <p>The first version lived in Framer. It's quick, design-native, and easy to like, and for a while it did the job.</p>
+        <p>Two things wore us down. The copy kept drifting into a marketing voice neither of us talks in, lines like "we keep it moving" that perform energy rather than have any. And the site started bending around the tool instead of the other way round: small changes got awkward, patterns got harder to reuse, and at no point did we actually own the thing we were building.</p>
+        <p>Rebuilding by hand gave us three things worth the hassle:</p>
+        <ul>
+          <li>Full ownership of the code.</li>
+          <li>Faster changes once the foundations were down.</li>
+          <li>No gap between what we designed and what shipped.</li>
+        </ul>
+        <p>It wasn't the fast route. It did let us obsess over details a template would never have let us near.</p>
 
-        <h2>We hand-coded it, on Netlify</h2>
-        <p>The plan was to rebuild the site by hand, in HTML and CSS with a little JavaScript. For a pair who mostly live in visual tools, that was a real shift, and a slightly nervous one. We did it for three reasons: no builder lock-in, it's fast, and we own all of it.</p>
-        <p>Netlify handles the hosting. It's free for a site like ours, it publishes straight from our GitHub repo, and there's almost nothing to manage. We change something, push it, and it's live within seconds. That loop is the thing that made hand-coding feel manageable rather than daunting.</p>
+        <h2>Our first direction looked good and was still wrong</h2>
+        <p>The biggest surprise was how easily "nice" passes for "right". Our first direction was soft and organic: rounded shapes, earthy colours, natural type. None of it was bad on its own. Together it felt like someone else's studio.</p>
+        <p>It wasn't a quality problem, it was a positioning one. We work mostly with tech and SaaS, so the site had to feel like we speak that language. But a fair amount of our work is for businesses that aren't software companies, and we didn't want any of them landing here and assuming it wasn't for them. So we kept the warmth and dropped the softness, kept the personality and cut the decoration, and ended up somewhere darker and more structured without turning into another anonymous startup site.</p>
+        <p>Throwing away finished work stings. We did it because we wanted a site we'd actually stand behind.</p>
+
+        <h2>A lime decided our palette</h2>
+        <p>The colours came from things we already had, not a generator. Green (<code>#3DDC84</code>) was there from the start. The gold (<code>#F6D764</code>) is lifted straight off a lime in one of our hero photos. Lavender (<code>#B8A9E8</code>) turned up later as a quieter third, for hover states and a couple of footer easter eggs.</p>
+        <p>A palette on its own isn't a brand, though. What turns it into one is using it the same way every time: gold for the things you click, green for identity and status, lavender in the background. The colours only became useful once they were rules.</p>
+
+        <h2>Why we landed on the pixel effect</h2>
+        <p>The homepage effects took more goes than anything else. Early versions looked impressive but disconnected. Some were too playful. Some sat too close to things we'd seen elsewhere.</p>
+        <p>We ended up with the pixelated bubble because it did a few jobs at once: it added movement without taking over the page, it felt digital without leaning on the usual tech clichés, and it tied the sections together. The point was never to add an effect. It was to find a visual language that backed up the positioning.</p>
+        <p>The About photo took the most fiddling. The first version shattered and scattered the photo on hover. We didn't like it, so we flipped the whole thing, and now it starts as a pixelated blob and clears as you move your cursor over it. We gave the hero and the photo the same physics so they read as one idea rather than two separate tricks.</p>
+        <p>Honesty, since that's the point of these notes: the hero effect still doesn't render properly on the right-hand side of the page. It's a canvas sizing thing, it's on the list, and you may well spot it before we fix it.</p>
 
         <h2>Yes, we used Claude Code</h2>
-        <p>We should say this plainly, since being straight with you is the whole point of these notes. We didn't hand-write every line in the traditional sense. We built the site with Claude Code, an AI coding tool, with the two of us directing it. We're designers first. Left to our own devices we'd probably have stayed in a builder rather than attempt a coded site at all, so Claude Code is what made hand-coding realistic for us.</p>
-        <p>What it actually looked like: we made the calls, it did the typing. We decided the layout, the type, the colours, the copy, and the effects, and described what we wanted. It wrote and changed the code, and we read it, tested it, and sent it back when it was wrong. It got plenty wrong. At one point it left a stray closing tag that quietly broke the layout of our contact page, the sort of thing you only catch by actually looking.</p>
-        <p>So the honest version is this: the tool handles the part that used to stop us, the code, but it doesn't hand you taste or judgement, and you have to check its work. We're happy to say we used it. Pretending otherwise would be exactly the kind of polish we're trying to avoid.</p>
-
-        <h2>The design we built and then binned</h2>
-        <p>Here's the part we'd usually leave out. Once we were rebuilding, we talked ourselves into a completely different look: soft and nature-ish, organic type, earthy greens, warm creams. We built it. Then we sat with it and realised it wasn't us. It was pleasant, but it didn't feel tech-native, and that's the room we actually work in. So we turned around and went back to a dark, confident look, closer to where we'd started in Framer but sharper.</p>
-        <p>There was a tension underneath all of this. We focus on tech and SaaS, so the site needed to feel tech-native, like we speak the language. But plenty of our work is for businesses that aren't software companies, and we didn't want any of them landing here and feeling it wasn't for them. So the brief became: confident and modern, not cold or jargon-heavy. A look that says we understand tech, without saying tech only.</p>
-        <p>The lesson we took: sometimes you have to build the wrong version to be sure about the right one. The trick is not getting precious about the wrong one.</p>
-
-        <h2>A lime decided our colours</h2>
-        <p>At first the green (<code>#3DDC84</code>) did all the work. The gold came later, and not from a palette tool. Our hero image is a photo with a lime in it, and the gold (<code>#F6D764</code>) is lifted straight off it. Once we had the pair, the system fell out naturally: gold for the things you're meant to click, green for identity and status, and lavender (<code>#B8A9E8</code>) as a quiet third for hover states and a couple of footer easter eggs. Two of our three brand colours came off a photograph, which we like more than picking them off a wheel.</p>
-
-        <h2>The pixel effects, and how many times we redid them</h2>
-        <p>Two parts of the site use a pixel effect: the hero, and the photo in the About section. Neither arrived in one go.</p>
-
-        <p>The hero went through a few versions before we settled on what's there now. The About photo we flipped entirely. The first version shattered the photo and scattered it outward on hover. We didn't like it, so we reversed the whole thing: it now starts as a pixelated blob and clears as you move your cursor over it, with a LinkedIn button surfacing once enough pixels have moved aside. We also made the hero and the photo run on the same physics, slightly different pixel sizes aside, so they read as one idea rather than two separate tricks.</p>
-        <p>Honesty, since that's the point of these notes: the hero effect still doesn't render properly on the right-hand side of the page. It's a canvas sizing problem and it's on the list. You may well spot it before we fix it.</p>
-
-        <h2>We argued about "we"</h2>
-        <p>For a while the site couldn't decide whether it was "we" or "I". Segment is two of us, so "we" is true, but the writing kept slipping between the two. We wrote the About section both ways, put them side by side, and chose. The bigger job was everything around it: if a line sounded like a brochure, it went. The handwritten "Nice to meet you!", the all-caps shouting, the clever coined phrases. Writing that sounds like a person was the whole brief, and it's the part we're most particular about.</p>
+        <p>We should say this plainly, since being straight with you is the whole point of these notes. We built the site with Claude Code, an AI coding tool, with the two of us directing it. We're designers first, and on our own we'd probably have stayed in a builder rather than attempt a coded site at all. This is what made hand-coding realistic for us.</p>
+        <p>The honest workflow was less "AI builds the site" and more: it writes a version, we test it, we break it, we rewrite the parts it got wrong, and round again. It got plenty wrong. At one point it left a stray closing tag that quietly broke the layout of our contact page, the kind of thing you only catch by looking. It made us faster. It didn't make the decisions.</p>
+        <p>So the honest version is this: the tool handles the part that used to stop us, the code. It doesn't hand you taste or judgement, and you have to check its work. We're happy to say we used it. Pretending otherwise would be exactly the kind of polish we're trying to avoid.</p>
 
         <h2>The honest numbers</h2>
         <p>The figures, because that's why we're writing this down:</p>
         <ul>
-          <li>Time: <mark class="todo">estimate to confirm: roughly 30 to 50 hours, spread over a few weeks of evenings</mark></li>
-          <li>Domain: <mark class="todo">&pound;__ a year</mark> with Blacknight, an Irish registrar a friend pointed us to, noticeably cheaper than the big-name option we were about to use</li>
-          <li>Hosting: &pound;0 (Netlify)</li>
-          <li>Build tools: &pound;0 in software, plus the cost of Claude Code and our own time</li>
+          <li>Time: somewhere around 40 hours, give or take, spread over a few weeks of evenings.</li>
+          <li>Domain: <mark class="todo">&pound;__ a year</mark> with Blacknight, an Irish registrar a friend pointed us to, cheaper than the big-name option we were about to use.</li>
+          <li>Hosting: &pound;0 (Netlify).</li>
+          <li>Tools: &pound;0 in software, plus Claude Code and our own time.</li>
         </ul>
-        <p>Most of the hours went into the design, the copy, and those effects, not the code underneath. We could have shipped faster. We chose to sweat the detail, down to swapping the placeholder emoji on the service cards for a proper icon set, because for a studio the site is the work.</p>
+        <p>Most of those hours went into the design, the copy, and the effects, not the code underneath. We could have shipped faster. We chose to sweat the detail, down to swapping the placeholder emoji on the service cards for a proper icon set, because for a studio the site is the work.</p>
 
-        <h2>A few things we learned</h2>
+        <h2>Building it ourselves changed how we work</h2>
+        <p>The less obvious payoff shows up after launch. Small updates stopped feeling expensive. Ideas became easy to test. The site turned into something we tinker with rather than something we avoid touching, which is the opposite of how the builder version felt by the end. We wanted something that grows with the business, not another platform migration in eighteen months. Owning it turned out to be as much about how we behave as about the code.</p>
+
+        <h2>What we'd do differently</h2>
         <ul>
-          <li><strong>Write the words first.</strong> We kept designing boxes before we knew what went in them, then reshaping the layout once the copy existed. Words first, layout second.</li>
-          <li><strong>The tool types, you taste.</strong> Claude Code can build almost anything you can describe. It can't tell you whether the thing is any good, or worth building. That part is still yours, and it's the part that counts.</li>
-          <li><strong>Check the work.</strong> AI-written code reads as confident even when it's broken. None of our bugs were loud. They were stray tags and sizing quirks you only find by looking.</li>
-          <li><strong>Ship before it's perfect.</strong> The hero bug is still live and we launched anyway. A site you keep improving beats a perfect one that never goes up.</li>
-          <li><strong>Build the wrong version if you have to.</strong> We did, with the earthy direction, and it's the fastest way we know to be sure about the right one.</li>
+          <li><strong>Sort the positioning first.</strong> The visual calls get much easier once the strategic ones are made. We learned that by building the wrong direction first.</li>
+          <li><strong>Write the words before the layout.</strong> We kept designing boxes before we knew what went in them, then reshaping them when the copy arrived.</li>
+          <li><strong>Decide sooner.</strong> Most of our dithering came from leaving too many routes open.</li>
+          <li><strong>Build for maintenance, not launch day.</strong> The real work starts once it's live.</li>
+          <li><strong>Expect to iterate.</strong> The first good version is rarely the last, and the hero bug is proof.</li>
         </ul>
 
-        <h2>What we wanted, and what we didn't</h2>
-        <p>What we were after: control, a site that sounds like us, a look that's ours, and the ability to fix things ourselves. What we steered away from: builder lock-in, marketing-speak, a template that a thousand other people are also running, and any copy that gushes.</p>
-
-        <h2>Would we do it this way again?</h2>
-        <p>Yes, including the version we binned. If you care about craft and you're comfortable in code, or willing to learn, hand-coding on Netlify is cheap, quick to run, and entirely yours. If you'd rather move fast and never think about it again, Framer and its kind are very good at exactly that. We turned out to be the first sort.</p>
+        <h2>Would we do it again?</h2>
+        <p>Yes, binned design and all. If you care about craft and you'll keep your hands on the site, hand-coding on Netlify is cheap, quick to run, and entirely yours. If you'd rather move fast and never think about it again, a builder is very good at exactly that. We turned out to be the first sort.</p>
         <p>This is the first of these Fieldnotes. We'll do more on the calls behind our work, the tools we use, and what it's like running a small studio in Guernsey. If there's something you'd want us to pull apart, tell us.</p>
       </div>
     </div>
