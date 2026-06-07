@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. The honest version of building the Segment site, hours included.">
+  <meta name="description" content="We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify with Claude Code. The honest version of building the Segment site, hours and AI included.">
   <title>How we built this site - Fieldnotes - Segment</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="How we built this site - Segment Fieldnotes">
-  <meta property="og:description" content="We started in Framer, didn't like it, and rebuilt by hand on Netlify. The design we binned, a lime that chose our palette, and a bug we still haven't fixed.">
-  <meta property="og:image" content="img/og-image.jpg">
+  <meta property="og:description" content="Framer to hand-coded on Netlify, with Claude Code. The design we binned, a lime that chose our palette, and a bug we still haven't fixed.">
+  <meta property="og:image" content="img/fieldnotes-hero-design.jpg">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
@@ -19,7 +19,10 @@
     .article__eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
     .article__title { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: var(--space-md); }
     .article__standfirst { font-family: var(--font-body); font-style: italic; font-size: 1.2rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-md); max-width: 100%; }
-    .article__byline { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); padding-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: var(--space-lg); }
+    .article__byline { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); padding-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: var(--space-md); }
+    .article__cover { margin: 0 0 var(--space-lg); }
+    .article__cover img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.08); }
+    .article__cover figcaption { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 0.7rem; text-align: center; }
     .article__body h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.4rem, 3vw, 1.8rem); letter-spacing: -0.02em; color: var(--white); margin: var(--space-lg) 0 var(--space-sm); }
     .article__body p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: var(--space-md); max-width: 100%; }
     .article__body strong { color: var(--text); font-weight: 600; }
@@ -27,6 +30,9 @@
     .article__body li { position: relative; padding-left: 1.4rem; font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.7rem; }
     .article__body li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
     .article__body code { font-family: var(--font-mono); font-size: 0.85em; color: var(--gold); background: var(--gold-glow); padding: 0.12em 0.4em; border-radius: 6px; }
+    .article__figure { margin: var(--space-lg) 0; }
+    .article__figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.08); }
+    .article__figure figcaption { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-faint); margin-top: 0.7rem; text-align: center; }
     .todo { color: var(--gold); background: rgba(246,215,100,0.12); border-bottom: 1px dashed var(--gold-dim); padding: 0 0.25em; border-radius: 3px; font-style: normal; }
     .article__back { max-width: 720px; margin: 0 auto; padding: var(--space-lg) var(--space-md) 0; }
     .article__back a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); transition: color var(--transition); }
@@ -52,8 +58,13 @@
     <div class="article__inner">
       <div class="article__eyebrow">Fieldnotes</div>
       <h1 class="article__title">How we built this site</h1>
-      <p class="article__standfirst">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. Along the way we designed a version we binned, took our accent colour off a photo of a lime, and shipped a bug we still haven't fixed. Here's the honest version, hours included.</p>
-      <p class="article__byline">Sophie &amp; Chris &middot; June 2026 &middot; 5 min read</p>
+      <p class="article__standfirst">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify with Claude Code. Along the way we designed a version we binned, took our accent colour off a photo of a lime, and shipped a bug we still haven't fixed. Here's the honest version, hours and AI included.</p>
+      <p class="article__byline">Sophie &amp; Chris &middot; June 2026 &middot; 6 min read</p>
+
+      <figure class="article__cover">
+        <img src="img/fieldnotes-hero-design.jpg" alt="The Segment homepage hero: the headline 'Fractional marketing that keeps things moving' in white on a dark background, with a scattered green pixel effect.">
+        <figcaption>Our homepage hero, pixel effect and all.</figcaption>
+      </figure>
 
       <div class="article__body">
         <p>You're reading this on the site it's about, which felt like the right place to start.</p>
@@ -67,16 +78,23 @@
         <p>The plan was to rebuild the site by hand, in HTML and CSS with a little JavaScript. For a pair who mostly live in visual tools, that was a real shift, and a slightly nervous one. We did it for three reasons: no builder lock-in, it's fast, and we own all of it.</p>
         <p>Netlify handles the hosting. It's free for a site like ours, it publishes straight from our GitHub repo, and there's almost nothing to manage. We change something, push it, and it's live within seconds. That loop is the thing that made hand-coding feel manageable rather than daunting.</p>
 
+        <h2>Yes, we used Claude Code</h2>
+        <p>We should say this plainly, since being straight with you is the whole point of these notes. We didn't hand-write every line in the traditional sense. We built the site with Claude Code, an AI coding tool, with the two of us directing it. We're designers first. Left to our own devices we'd probably have stayed in a builder rather than attempt a coded site at all, so Claude Code is what made hand-coding realistic for us.</p>
+        <p>What it actually looked like: we made the calls, it did the typing. We decided the layout, the type, the colours, the copy, and the effects, and described what we wanted. It wrote and changed the code, and we read it, tested it, and sent it back when it was wrong. It got plenty wrong. At one point it left a stray closing tag that quietly broke the layout of our contact page, the sort of thing you only catch by actually looking.</p>
+        <p>So the honest version is this: the tool handles the part that used to stop us, the code, but it doesn't hand you taste or judgement, and you have to check its work. We're happy to say we used it. Pretending otherwise would be exactly the kind of polish we're trying to avoid.</p>
+
         <h2>The design we built and then binned</h2>
         <p>Here's the part we'd usually leave out. Once we were rebuilding, we talked ourselves into a completely different look: soft and nature-ish, organic type, earthy greens, warm creams. We built it. Then we sat with it and realised it wasn't us. It was pleasant, but it didn't feel tech-native, and that's the room we actually work in. So we turned around and went back to a dark, confident look, closer to where we'd started in Framer but sharper.</p>
+        <p>There was a tension underneath all of this. We focus on tech and SaaS, so the site needed to feel tech-native, like we speak the language. But plenty of our work is for businesses that aren't software companies, and we didn't want any of them landing here and feeling it wasn't for them. So the brief became: confident and modern, not cold or jargon-heavy. A look that says we understand tech, without saying tech only.</p>
         <p>The lesson we took: sometimes you have to build the wrong version to be sure about the right one. The trick is not getting precious about the wrong one.</p>
 
         <h2>A lime decided our colours</h2>
         <p>At first the green (<code>#3DDC84</code>) did all the work. The gold came later, and not from a palette tool. Our hero image is a photo with a lime in it, and the gold (<code>#F6D764</code>) is lifted straight off it. Once we had the pair, the system fell out naturally: gold for the things you're meant to click, green for identity and status, and lavender (<code>#B8A9E8</code>) as a quiet third for hover states and a couple of footer easter eggs. Two of our three brand colours came off a photograph, which we like more than picking them off a wheel.</p>
 
         <h2>The pixel effects, and how many times we redid them</h2>
-        <p>Two parts of the site use a pixel effect: the hero, and the photo in the About section. Both took several goes.</p>
-        <p>The About photo we flipped entirely. The first version shattered the photo and scattered it outward on hover. We didn't like it, so we reversed the whole thing: now it starts pixelated and clears as you move your cursor over it, with a LinkedIn button surfacing once enough pixels have moved aside. We also made the hero and the photo run on the same physics, slightly different pixel sizes aside, so they read as one idea rather than two separate tricks.</p>
+        <p>Two parts of the site use a pixel effect: the hero, and the photo in the About section. Neither arrived in one go.</p>
+
+        <p>The hero went through a few versions before we settled on what's there now. The About photo we flipped entirely. The first version shattered the photo and scattered it outward on hover. We didn't like it, so we reversed the whole thing: it now starts as a pixelated blob and clears as you move your cursor over it, with a LinkedIn button surfacing once enough pixels have moved aside. We also made the hero and the photo run on the same physics, slightly different pixel sizes aside, so they read as one idea rather than two separate tricks.</p>
         <p>Honesty, since that's the point of these notes: the hero effect still doesn't render properly on the right-hand side of the page. It's a canvas sizing problem and it's on the list. You may well spot it before we fix it.</p>
 
         <h2>We argued about "we"</h2>
@@ -88,9 +106,18 @@
           <li>Time: <mark class="todo">estimate to confirm: roughly 30 to 50 hours, spread over a few weeks of evenings</mark></li>
           <li>Domain: <mark class="todo">&pound;__ a year</mark> with Blacknight, an Irish registrar a friend pointed us to, noticeably cheaper than the big-name option we were about to use</li>
           <li>Hosting: &pound;0 (Netlify)</li>
-          <li>Build tools: &pound;0 (a code editor and our own time)</li>
+          <li>Build tools: &pound;0 in software, plus the cost of Claude Code and our own time</li>
         </ul>
-        <p>Most of the hours went into the design, the copy, and those effects, not the code underneath. We could have shipped faster. We chose to sweat the detail, down to swapping the placeholder emoji on the service cards for a proper icon set last week, because for a studio the site is the work.</p>
+        <p>Most of the hours went into the design, the copy, and those effects, not the code underneath. We could have shipped faster. We chose to sweat the detail, down to swapping the placeholder emoji on the service cards for a proper icon set, because for a studio the site is the work.</p>
+
+        <h2>A few things we learned</h2>
+        <ul>
+          <li><strong>Write the words first.</strong> We kept designing boxes before we knew what went in them, then reshaping the layout once the copy existed. Words first, layout second.</li>
+          <li><strong>The tool types, you taste.</strong> Claude Code can build almost anything you can describe. It can't tell you whether the thing is any good, or worth building. That part is still yours, and it's the part that counts.</li>
+          <li><strong>Check the work.</strong> AI-written code reads as confident even when it's broken. None of our bugs were loud. They were stray tags and sizing quirks you only find by looking.</li>
+          <li><strong>Ship before it's perfect.</strong> The hero bug is still live and we launched anyway. A site you keep improving beats a perfect one that never goes up.</li>
+          <li><strong>Build the wrong version if you have to.</strong> We did, with the earthy direction, and it's the fastest way we know to be sure about the right one.</li>
+        </ul>
 
         <h2>What we wanted, and what we didn't</h2>
         <p>What we were after: control, a site that sounds like us, a look that's ours, and the ability to fix things ourselves. What we steered away from: builder lock-in, marketing-speak, a template that a thousand other people are also running, and any copy that gushes.</p>
