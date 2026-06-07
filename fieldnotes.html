@@ -14,15 +14,19 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     .fieldnotes-hero { padding: calc(var(--space-xl) + 40px) 0 var(--space-md); }
-    .fieldnotes-hero__inner { max-width: 720px; margin: 0 auto; padding: 0 var(--space-md); }
+    .fieldnotes-hero__inner { max-width: 760px; margin: 0 auto; padding: 0 var(--space-md); }
     .fn-eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.6rem; margin-bottom: var(--space-sm); }
     .fn-eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
     .fieldnotes-hero h1 { color: var(--white); margin-bottom: var(--space-sm); }
     .fieldnotes-hero .lede { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8; max-width: 600px; }
-    .fieldnotes-list { max-width: 720px; margin: 0 auto; padding: 0 var(--space-md) var(--space-xl); }
-    .fn-entry { display: block; padding: var(--space-md) 0; border-top: 1px solid rgba(255,255,255,0.08); transition: border-color var(--transition); }
+    .fieldnotes-list { max-width: 760px; margin: 0 auto; padding: 0 var(--space-md) var(--space-xl); }
+    .fn-entry { display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md) 0; border-top: 1px solid rgba(255,255,255,0.08); transition: border-color var(--transition); }
     .fn-entry:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
     .fn-entry:hover { border-color: rgba(255,255,255,0.18); }
+    .fn-entry__thumb { flex: 0 0 220px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+    .fn-entry__thumb img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform var(--transition); }
+    .fn-entry:hover .fn-entry__thumb img { transform: scale(1.04); }
+    .fn-entry__text { flex: 1; min-width: 0; }
     .fn-entry__meta { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
     .fn-entry__meta::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
     .fn-entry__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.5rem; transition: color var(--transition); }
@@ -30,6 +34,10 @@
     .fn-entry__excerpt { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 100%; }
     .fn-entry__more { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); margin-top: 0.8rem; }
     .fn-entry__more::after { content: ' \2192'; }
+    @media (max-width: 640px) {
+      .fn-entry { flex-direction: column; }
+      .fn-entry__thumb { flex-basis: auto; width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -49,7 +57,7 @@
 
   <header class="fieldnotes-hero">
     <div class="fieldnotes-hero__inner">
-      <div class="fn-eyebrow">Fieldnotes</div>
+      <div class="fn-eyebrow">Behind the work</div>
       <h1>Fieldnotes</h1>
       <p class="lede">Where we show our workings. Short, honest write-ups of how we make the calls behind the work: the tools we pick, the things we get wrong, and the reasoning that doesn't usually make it into a case study. Less polished portfolio, more open notebook. Useful, we hope, whether or not you ever work with us.</p>
     </div>
@@ -57,10 +65,15 @@
 
   <main class="fieldnotes-list">
     <a class="fn-entry" href="fieldnotes-how-we-built-this-site.html">
-      <div class="fn-entry__meta">June 2026 &middot; 5 min read</div>
-      <h2 class="fn-entry__title">How we built this site</h2>
-      <p class="fn-entry__excerpt">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. The design we binned, the accent colour we took off a photo of a lime, and the bug we still haven't fixed.</p>
-      <span class="fn-entry__more">Read</span>
+      <div class="fn-entry__thumb">
+        <img src="img/fieldnotes-hero-design.jpg" alt="The Segment homepage hero on a dark background with a green pixel effect.">
+      </div>
+      <div class="fn-entry__text">
+        <div class="fn-entry__meta">June 2026 &middot; 6 min read</div>
+        <h2 class="fn-entry__title">How we built this site</h2>
+        <p class="fn-entry__excerpt">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify with Claude Code. The design we binned, the colour we took off a lime, the AI we'll own up to, and a bug we still haven't fixed.</p>
+        <span class="fn-entry__more">Read</span>
+      </div>
     </a>
   </main>
 
