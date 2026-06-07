@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. The honest version of building the Segment site, hours included.">
+  <title>How we built this site - Fieldnotes - Segment</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="How we built this site - Segment Fieldnotes">
+  <meta property="og:description" content="We started in Framer, didn't like it, and rebuilt by hand on Netlify. The design we binned, a lime that chose our palette, and a bug we still haven't fixed.">
+  <meta property="og:image" content="img/og-image.jpg">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .article { padding: calc(var(--space-xl) + 40px) 0 var(--space-lg); }
+    .article__inner { max-width: 720px; margin: 0 auto; padding: 0 var(--space-md); }
+    .article__eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.6rem; margin-bottom: var(--space-md); }
+    .article__eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    .article__title { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: var(--space-md); }
+    .article__standfirst { font-family: var(--font-body); font-style: italic; font-size: 1.2rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: var(--space-md); max-width: 100%; }
+    .article__byline { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-faint); padding-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: var(--space-lg); }
+    .article__body h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.4rem, 3vw, 1.8rem); letter-spacing: -0.02em; color: var(--white); margin: var(--space-lg) 0 var(--space-sm); }
+    .article__body p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: var(--space-md); max-width: 100%; }
+    .article__body strong { color: var(--text); font-weight: 600; }
+    .article__body ul { list-style: none; margin: 0 0 var(--space-md); padding: 0; }
+    .article__body li { position: relative; padding-left: 1.4rem; font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.7rem; }
+    .article__body li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+    .article__body code { font-family: var(--font-mono); font-size: 0.85em; color: var(--gold); background: var(--gold-glow); padding: 0.12em 0.4em; border-radius: 6px; }
+    .todo { color: var(--gold); background: rgba(246,215,100,0.12); border-bottom: 1px dashed var(--gold-dim); padding: 0 0.25em; border-radius: 3px; font-style: normal; }
+    .article__back { max-width: 720px; margin: 0 auto; padding: var(--space-lg) var(--space-md) 0; }
+    .article__back a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); transition: color var(--transition); }
+    .article__back a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><span>Segment</span></a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="fieldnotes.html" class="nav__link nav__link--active">Fieldnotes</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="contact.html" class="nav__cta">Get in touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="article">
+    <div class="article__inner">
+      <div class="article__eyebrow">Fieldnotes</div>
+      <h1 class="article__title">How we built this site</h1>
+      <p class="article__standfirst">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. Along the way we designed a version we binned, took our accent colour off a photo of a lime, and shipped a bug we still haven't fixed. Here's the honest version, hours included.</p>
+      <p class="article__byline">Sophie &amp; Chris &middot; June 2026 &middot; 5 min read</p>
+
+      <div class="article__body">
+        <p>You're reading this on the site it's about, which felt like the right place to start.</p>
+        <p>We spend most of our time helping other people's brands look and sound like themselves, so our own site sat near the bottom of the list for a while. When we finally built it, we wanted to do it properly and be honest about how it went. That's what Fieldnotes is for: the working out, not the finished case study. This is the first one.</p>
+
+        <h2>It started in Framer, and started sounding like a brochure</h2>
+        <p>Framer was the obvious place to begin. It's quick, it looks good with little effort, and we like working visually. For a while it was fine.</p>
+        <p>Two things changed our minds. The first was the copy. Left to a builder's momentum, it had drifted into a marketing voice neither of us talks in. Lines like "we keep it moving" and "a project we've loved working on" were performing energy rather than having any. The second was the tool itself. The further we pushed, the more we were designing around Framer instead of with it, and we wanted those decisions back. So we left: out of the builder, and into something we owned.</p>
+
+        <h2>We hand-coded it, on Netlify</h2>
+        <p>The plan was to rebuild the site by hand, in HTML and CSS with a little JavaScript. For a pair who mostly live in visual tools, that was a real shift, and a slightly nervous one. We did it for three reasons: no builder lock-in, it's fast, and we own all of it.</p>
+        <p>Netlify handles the hosting. It's free for a site like ours, it publishes straight from our GitHub repo, and there's almost nothing to manage. We change something, push it, and it's live within seconds. That loop is the thing that made hand-coding feel manageable rather than daunting.</p>
+
+        <h2>The design we built and then binned</h2>
+        <p>Here's the part we'd usually leave out. Once we were rebuilding, we talked ourselves into a completely different look: soft and nature-ish, organic type, earthy greens, warm creams. We built it. Then we sat with it and realised it wasn't us. It was pleasant, but it didn't feel tech-native, and that's the room we actually work in. So we turned around and went back to a dark, confident look, closer to where we'd started in Framer but sharper.</p>
+        <p>The lesson we took: sometimes you have to build the wrong version to be sure about the right one. The trick is not getting precious about the wrong one.</p>
+
+        <h2>A lime decided our colours</h2>
+        <p>At first the green (<code>#3DDC84</code>) did all the work. The gold came later, and not from a palette tool. Our hero image is a photo with a lime in it, and the gold (<code>#F6D764</code>) is lifted straight off it. Once we had the pair, the system fell out naturally: gold for the things you're meant to click, green for identity and status, and lavender (<code>#B8A9E8</code>) as a quiet third for hover states and a couple of footer easter eggs. Two of our three brand colours came off a photograph, which we like more than picking them off a wheel.</p>
+
+        <h2>The pixel effects, and how many times we redid them</h2>
+        <p>Two parts of the site use a pixel effect: the hero, and the photo in the About section. Both took several goes.</p>
+        <p>The About photo we flipped entirely. The first version shattered the photo and scattered it outward on hover. We didn't like it, so we reversed the whole thing: now it starts pixelated and clears as you move your cursor over it, with a LinkedIn button surfacing once enough pixels have moved aside. We also made the hero and the photo run on the same physics, slightly different pixel sizes aside, so they read as one idea rather than two separate tricks.</p>
+        <p>Honesty, since that's the point of these notes: the hero effect still doesn't render properly on the right-hand side of the page. It's a canvas sizing problem and it's on the list. You may well spot it before we fix it.</p>
+
+        <h2>We argued about "we"</h2>
+        <p>For a while the site couldn't decide whether it was "we" or "I". Segment is two of us, so "we" is true, but the writing kept slipping between the two. We wrote the About section both ways, put them side by side, and chose. The bigger job was everything around it: if a line sounded like a brochure, it went. The handwritten "Nice to meet you!", the all-caps shouting, the clever coined phrases. Writing that sounds like a person was the whole brief, and it's the part we're most particular about.</p>
+
+        <h2>The honest numbers</h2>
+        <p>The figures, because that's why we're writing this down:</p>
+        <ul>
+          <li>Time: <mark class="todo">estimate to confirm: roughly 30 to 50 hours, spread over a few weeks of evenings</mark></li>
+          <li>Domain: <mark class="todo">&pound;__ a year</mark> with Blacknight, an Irish registrar a friend pointed us to, noticeably cheaper than the big-name option we were about to use</li>
+          <li>Hosting: &pound;0 (Netlify)</li>
+          <li>Build tools: &pound;0 (a code editor and our own time)</li>
+        </ul>
+        <p>Most of the hours went into the design, the copy, and those effects, not the code underneath. We could have shipped faster. We chose to sweat the detail, down to swapping the placeholder emoji on the service cards for a proper icon set last week, because for a studio the site is the work.</p>
+
+        <h2>What we wanted, and what we didn't</h2>
+        <p>What we were after: control, a site that sounds like us, a look that's ours, and the ability to fix things ourselves. What we steered away from: builder lock-in, marketing-speak, a template that a thousand other people are also running, and any copy that gushes.</p>
+
+        <h2>Would we do it this way again?</h2>
+        <p>Yes, including the version we binned. If you care about craft and you're comfortable in code, or willing to learn, hand-coding on Netlify is cheap, quick to run, and entirely yours. If you'd rather move fast and never think about it again, Framer and its kind are very good at exactly that. We turned out to be the first sort.</p>
+        <p>This is the first of these Fieldnotes. We'll do more on the calls behind our work, the tools we use, and what it's like running a small studio in Guernsey. If there's something you'd want us to pull apart, tell us.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="article__back">
+    <a href="fieldnotes.html">&larr; All fieldnotes</a>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">Segment</a>
+        <ul class="footer__links">
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="projects.html" class="footer__link">Projects</a></li>
+          <li><a href="fieldnotes.html" class="footer__link">Fieldnotes</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>
+        </ul>
+        <p class="footer__copy">Segment &middot; Fractional marketing &middot; Guernsey &copy; 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
+</html>

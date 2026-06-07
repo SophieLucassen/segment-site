@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fieldnotes. Notes on how we work, what we choose, and why. Behind-the-scenes write-ups from Segment.">
+  <title>Fieldnotes - Segment</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Fieldnotes - Segment">
+  <meta property="og:description" content="Notes on how we work, what we choose, and why.">
+  <meta property="og:image" content="img/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fieldnotes-hero { padding: calc(var(--space-xl) + 40px) 0 var(--space-md); }
+    .fieldnotes-hero__inner { max-width: 720px; margin: 0 auto; padding: 0 var(--space-md); }
+    .fn-eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.6rem; margin-bottom: var(--space-sm); }
+    .fn-eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    .fieldnotes-hero h1 { color: var(--white); margin-bottom: var(--space-sm); }
+    .fieldnotes-hero .lede { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8; max-width: 600px; }
+    .fieldnotes-list { max-width: 720px; margin: 0 auto; padding: 0 var(--space-md) var(--space-xl); }
+    .fn-entry { display: block; padding: var(--space-md) 0; border-top: 1px solid rgba(255,255,255,0.08); transition: border-color var(--transition); }
+    .fn-entry:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .fn-entry:hover { border-color: rgba(255,255,255,0.18); }
+    .fn-entry__meta { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+    .fn-entry__meta::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+    .fn-entry__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.5rem; transition: color var(--transition); }
+    .fn-entry:hover .fn-entry__title { color: var(--gold); }
+    .fn-entry__excerpt { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 100%; }
+    .fn-entry__more { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); margin-top: 0.8rem; }
+    .fn-entry__more::after { content: ' \2192'; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><span>Segment</span></a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="fieldnotes.html" class="nav__link nav__link--active">Fieldnotes</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="contact.html" class="nav__cta">Get in touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="fieldnotes-hero">
+    <div class="fieldnotes-hero__inner">
+      <div class="fn-eyebrow">Fieldnotes</div>
+      <h1>Fieldnotes</h1>
+      <p class="lede">Where we show our workings. Short, honest write-ups of how we make the calls behind the work: the tools we pick, the things we get wrong, and the reasoning that doesn't usually make it into a case study. Less polished portfolio, more open notebook. Useful, we hope, whether or not you ever work with us.</p>
+    </div>
+  </header>
+
+  <main class="fieldnotes-list">
+    <a class="fn-entry" href="fieldnotes-how-we-built-this-site.html">
+      <div class="fn-entry__meta">June 2026 &middot; 5 min read</div>
+      <h2 class="fn-entry__title">How we built this site</h2>
+      <p class="fn-entry__excerpt">We started in Framer, didn't like it, and rebuilt the whole thing by hand on Netlify. The design we binned, the accent colour we took off a photo of a lime, and the bug we still haven't fixed.</p>
+      <span class="fn-entry__more">Read</span>
+    </a>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">Segment</a>
+        <ul class="footer__links">
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="projects.html" class="footer__link">Projects</a></li>
+          <li><a href="fieldnotes.html" class="footer__link">Fieldnotes</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>
+        </ul>
+        <p class="footer__copy">Segment &middot; Fractional marketing &middot; Guernsey &copy; 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
+</html>
