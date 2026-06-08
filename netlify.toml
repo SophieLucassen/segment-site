@@ -1,0 +1,108 @@
+# Segment — clean URLs
+# The site is hand-coded .html files. Netlify already serves the
+# extensionless version (/projects reads projects.html), so these rules
+# 301 the .html addresses to their clean paths and make them canonical.
+# force = true is needed because the .html files exist.
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fieldnotes.html"
+  to = "/fieldnotes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fieldnotes-how-we-built-this-site.html"
+  to = "/fieldnotes-how-we-built-this-site"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/team.html"
+  to = "/team"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/allday.html"
+  to = "/projects/allday"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/bragi-ooh.html"
+  to = "/projects/bragi-ooh"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/bragi-social.html"
+  to = "/projects/bragi-social"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/bragi-website.html"
+  to = "/projects/bragi-website"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/cortex-awareness.html"
+  to = "/projects/cortex-awareness"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/girls-innovate.html"
+  to = "/projects/girls-innovate"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/reportgenie.html"
+  to = "/projects/reportgenie"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/seeker-ux.html"
+  to = "/projects/seeker-ux"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/social-management.html"
+  to = "/projects/social-management"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/trollverse.html"
+  to = "/projects/trollverse"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/trueaxis.html"
+  to = "/projects/trueaxis"
+  status = 301
+  force = true
+
