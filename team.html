@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the Segment team: Sophie Lucassen and Chris Blin.">
+  <title>The team - Segment</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><span>Segment</span></a>
+      <button class="nav__toggle" aria-label="Menu" onclick="document.querySelector('.nav__links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="fieldnotes.html" class="nav__link">Fieldnotes</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="contact.html" class="nav__cta">Get in touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <h1 class="animate-in">The team</h1>
+      <p class="animate-in">Segment is a two-person studio. You'll work with both of us.</p>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section--lg" style="padding-top: 0;">
+    <div class="container">
+      <div class="team">
+        <div class="team__member">
+          <div class="team__photo"><img src="img/sophie.jpg" alt="Sophie Lucassen"></div>
+          <h3 class="team__name">Sophie Lucassen</h3>
+          <div class="team__role">Founder</div>
+          <p class="team__bio">Sophie founded Segment and does the work itself: the marketing, the design, the copy, the websites. Her background is in B2B and tech marketing, and she works close to the people she's building for, hands-on rather than advising from a distance.</p>
+        </div>
+        <div class="team__member">
+          <div class="team__photo"><img src="img/chris-blin.jpg" alt="Chris Blin"></div>
+          <h3 class="team__name">Chris Blin</h3>
+          <div class="team__role">Co-founder</div>
+          <p class="team__bio">Chris is the strategic mind behind Segment. He's the one thinking about where a piece of work needs to go and who it should reach, and he makes the warm introductions that turn into the right conversations. Sophie runs the delivery; Chris makes sure it's pointed in the right direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">Segment</a>
+        <ul class="footer__links">
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="projects.html" class="footer__link">Projects</a></li>
+          <li><a href="fieldnotes.html" class="footer__link">Fieldnotes</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>
+        </ul>
+        <p class="footer__copy">Segment · Fractional marketing · Guernsey © 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
+</html>
