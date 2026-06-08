@@ -1441,3 +1441,27 @@ p {
     padding-bottom: 62.5%;
   }
 }
+
+
+/* Team */
+.team { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+.team__member { min-width: 0; }
+.team__photo { width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--bg-card); margin-bottom: var(--space-md); }
+.team__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.team__name { margin-bottom: 0.3rem; }
+.team__role { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: var(--space-sm); }
+.team__bio { color: var(--text-secondary); line-height: 1.75; }
+@media (max-width: 640px) { .team { grid-template-columns: 1fr; gap: var(--space-xl); } }
+
+/* Footer group line (renders across every page) */
+.footer .container::after {
+  content: "Segment is part of a group of businesses, PA (1993) Limited.";
+  display: block;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+@media (max-width: 640px) { .footer .container::after { text-align: center; } }
