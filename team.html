@@ -11,22 +11,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo"><span>Segment</span></a>
-      <button class="nav__toggle" aria-label="Menu" onclick="document.querySelector('.nav__links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav__links">
-        <li><a href="index.html" class="nav__link">Home</a></li>
-        <li><a href="projects.html" class="nav__link">Projects</a></li>
-        <li><a href="fieldnotes.html" class="nav__link">Fieldnotes</a></li>
-        <li><a href="team.html" class="nav__link nav__link--active">Team</a></li>
-        <li><a href="contact.html" class="nav__link">Contact</a></li>
-        <li><a href="contact.html" class="nav__cta">Get in touch</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="site-nav"></div>
 
   <!-- Hero -->
   <section class="team-hero">
@@ -71,28 +56,8 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <a href="index.html" class="footer__logo">Segment</a>
-        <ul class="footer__links">
-          <li><a href="index.html" class="footer__link">Home</a></li>
-          <li><a href="projects.html" class="footer__link">Projects</a></li>
-          <li><a href="fieldnotes.html" class="footer__link">Fieldnotes</a></li>
-          <li><a href="team.html" class="footer__link">Team</a></li>
-          <li><a href="contact.html" class="footer__link">Contact</a></li>
-          <li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>
-        </ul>
-        <p class="footer__copy">Segment · Fractional marketing · Guernsey © 2026</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-  </script>
+  <script src="js/site.js"></script>
 </body>
 </html>
