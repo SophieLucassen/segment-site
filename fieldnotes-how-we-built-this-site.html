@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The honest account of rebuilding our own site: hand-coded, hosted by us, built with AI. The direction we scrapped, the colour we found by accident, and what it cost.">
+  <meta name="description" content="The honest account of building (and rebuilding) our own site: hand-coded, hosted by us, built with AI.">
   <title>How we built this site - Fieldnotes - Segment</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="How we built this site - Segment Fieldnotes">
-  <meta property="og:description" content="The brand decisions behind a site rebuild: positioning over aesthetics, a palette that became a system, and using AI well.">
+  <meta property="og:description" content="The brand decisions behind a site rebuild: positioning over aesthetics, a palette that became a system, and using AI.">
   <meta property="og:image" content="img/fieldnotes-hero-design.jpg">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
@@ -55,7 +55,7 @@
     <div class="article__inner">
       <div class="article__eyebrow">Fieldnotes</div>
       <h1 class="article__title">How we built this site</h1>
-      <p class="article__standfirst">We rebuilt our own site this year. It's hand-coded, hosted by us, and built with an AI we'll happily name. This is the honest account of the decisions behind it: the direction we scrapped, the colour we found by accident, and what it actually cost.</p>
+      <p class="article__standfirst">We rebuilt our own site this year. It's hand-coded, hosted by us, and built with Claude Code. This is the honest account of the decisions behind it: the direction we scrapped, the decisions behind the build, and what it actually cost.</p>
       <p class="article__byline">Sophie &amp; Chris &middot; June 2026 &middot; 6 min read</p>
 
       <figure class="article__cover">
@@ -64,46 +64,45 @@
       </figure>
 
       <div class="article__body">
-        <p>You're reading this on the site it's about, so treat it as a worked example. We rebuilt it for ourselves this year, with no client to please and no deadline but our own, which is exactly the kind of project that quietly runs away from you. Here are the decisions that shaped it, and the ones we had to unmake along the way.</p>
+        <p>You're reading this on the site it's about, so treat it as a worked example. We built and rebuilt it for ourselves, with no client to please and no deadline but our own, which is exactly the kind of project that quietly runs away from you. Here are the decisions that shaped it, and the ones we had to unmake along the way.</p>
 
         <h2>We left the builder on purpose</h2>
-        <p>The first version lived in Framer. It's a strong tool and we still recommend it for plenty of jobs. For our own site we wanted something different: full control of the output, and the freedom to change anything without the platform having an opinion. As the Framer version grew, the copy kept drifting into a marketing voice neither of us talks in, and the design started bending around the tool rather than the other way round.</p>
-        <p>So we rebuilt it by hand. The principle worth taking from it: choose your tools for the kind of control the work needs. For a quick microsite, a builder is the right answer. For the thing that represents you, owning the code earns its keep, because every compromise the platform forces is one your audience eventually feels.</p>
+        <p>The first version lived in Framer. It's a strong tool and we still recommend it for plenty of jobs. For our own site we wanted something different: full control of the output, and the freedom to change anything without the platform having an opinion. As the Framer version grew, the design started bending around the tool rather than the other way round.</p>
+        <p>So, we rebuilt it by completely starting over. The principle worth taking from it: choose your tools for the kind of control the work needs. For a quick microsite, a builder is the right answer. For the thing that represents you, owning the code earns its keep, because every compromise the platform forces is one your audience eventually feels.</p>
 
         <h2>How it's built and hosted</h2>
         <p>Under the surface it's deliberately simple, and that's a decision in itself. The site is plain HTML, CSS, and a little JavaScript. No framework, no build step, nothing clever that needs maintaining.</p>
         <p>The code lives in a GitHub repository, which is the single source of truth. Every change is a commit, so we can see exactly what changed and when, and undo anything that goes wrong without drama.</p>
         <p>Netlify is wired to that repository. When we push a change to GitHub, Netlify rebuilds and publishes the site within seconds, on its own. No uploading files, no server to keep patched, nothing to log into. Push, and it's live.</p>
-        <p>Hosting is free at our scale. The only thing we pay for is the domain: a .gg domain, which suits a Guernsey studio, found for under &pound;60 a year through Blacknight, an Irish registrar a friend put us onto. The big-name registrars wanted a good deal more for the same name.</p>
-        <p>We spell this out because the combination is the point: cheap, fast, and entirely ours, with no platform that can change its pricing or its rules from under us. For the site that represents your business, that's worth more than any feature a builder could bolt on.</p>
+        <p>Hosting is free at our scale. The only thing we pay for is the domain: a .gg domain, which suits a Guernsey studio, found for under &pound;50 a year through a registrar a friend put us onto. The big-name registrars wanted a good deal more for the same name.</p>
+        <p>It's a straight-forward combination that is exactly what we wanted: cheap, fast, and entirely ours, with no platform that can change its pricing or its rules from under us. For the site that represents your business, that's worth more than any feature a builder could bolt on.</p>
 
         <h2>Looking good was not the same as being right</h2>
-        <p>The first direction we designed was genuinely nice: soft shapes, earthy colours, natural type. We built it out, sat with it, and scrapped it. Not because it was poor work, but because it was the wrong work. It looked like a wellness brand, and we are not one.</p>
+        <p>The first direction we designed was genuinely nice: soft shapes, earthy colours, natural type. We built it out, sat with it, and scrapped it. Not because it was poor work, but because it was the wrong work. It looked like a surf brand, and whilst we loved the look, it just doesn't resonate with our clients or what we do.</p>
         <p>This is the call we see businesses get wrong most often: judging a brand on whether it's attractive rather than whether it's aligned. We work mostly with tech and SaaS, so the site had to signal that we speak that language. But plenty of our clients aren't software companies, and the look couldn't be so coded to tech that they felt shut out. What we landed on was confident and modern, warm without being soft, technical without being cold.</p>
         <p>Scrapping finished work is the part most people avoid. It's also the fastest way to be sure of the version you keep.</p>
 
         <h2>The palette had to become a system</h2>
-        <p>Our colours came from things we already had rather than a generator. Green (<code>#3DDC84</code>) was there from the start. The gold (<code>#F6D764</code>) is lifted straight off a lime in one of our hero photos. Lavender (<code>#B8A9E8</code>) came later as a quieter third.</p>
-        <p>The colours themselves are the easy part. What makes them a brand is the rule behind each one: gold for anything you can click, green for identity and status, lavender kept in the background. A palette without rules is a mood board. The discipline of giving each colour a single job is what makes a small studio read as deliberate rather than decorated.</p>
+        <p>Our colours came from things we already had rather than a generator. Green (<code>#3DDC84</code>) was there from the start. The gold (<code>#F6D764</code>) is lifted straight off a lime in our hero photo. Lavender (<code>#B8A9E8</code>) came later as a quieter third.</p>
+        <p>The colours themselves are the easy part. What makes them a brand is the rule behind each one: gold for anything you can click, green for identity and status, lavender kept in the background. This gives the site consistency and makes it easier to use.</p>
 
         <h2>The pixel effect had to earn its place</h2>
         <p>The homepage interaction took more iterations than anything else, and most of them we threw away. Some looked impressive but said nothing. Some were too playful for the audience. Some sat too close to effects we'd seen elsewhere.</p>
-        <p>We kept going because an effect that doesn't serve the positioning is just noise, however good it looks. The pixel treatment we settled on does specific work: it adds movement without taking over, it reads as digital without the tired tech clichés, and it carries across the site so the hero and the About section feel like one idea. That's the bar we'd set for any interaction. If you can't say what job it's doing, cut it.</p>
+        <p>We kept going because an effect that doesn't serve the positioning is just noise, however good it looks. The pixel treatment we settled on does specific work: it adds movement without taking over, it reads as digital without the tired tech clichés (hopefully!), and it carries across the site so the hero and the About section feel like one idea. That's the bar we'd set for any interaction. If you can't say what job it's doing, cut it.</p>
 
-        <h2>How we actually used AI</h2>
-        <p>We built the site with Claude Code, an AI coding tool, and we'd rather say so than pretend a small studio hand-typed every line.</p>
-        <p>The honest version is that the tool is only as good as the direction you give it. We decided the layout, the type, the colours, the copy, and the interactions; it produced the code; and the value we added was the judgement in between.</p>
-        <p>If there's a lesson worth passing on, it's that AI hasn't replaced the skill, it's moved it. The work is now in knowing what good looks like and being able to tell when you're not getting it. That part is still entirely human, and it's the part clients are paying for.</p>
+        <h2>How we used AI</h2>
+        <p>We built the site with Claude Code, an AI coding tool.</p>
+        <p>The tool is great but needs a lot of clear direction. We decided the layout, the type, the colours, the copy, and the interactions; it produced the code; and the value we added was the judgement in between.</p>
 
         <h2>The honest numbers</h2>
-        <p>Since the point of writing this down is to be useful, the figures:</p>
+        <p>For anyone who's interested in doing a similar build, here's what it cost us:</p>
         <ul>
           <li>Time: around 40 hours, spread over a few weeks of evenings.</li>
-          <li>Domain: under &pound;60 a year for a .gg domain.</li>
+          <li>Domain: under &pound;50 a year for a .gg domain.</li>
           <li>Hosting: &pound;0 on Netlify.</li>
-          <li>Tools: no software cost beyond Claude Code and our own time.</li>
+          <li>Tools: &pound;20 per month for Claude.</li>
         </ul>
-        <p>Most of those hours went into the design, the copy, and the interactions, not the code. The code was the cheap part. The thinking was the expensive part, which is rather the point.</p>
+        <p>A lot of hours have gone into the website, and we've got a backlog of changes and updates we'll continue with. The freedom this setup provided us is worth the extensive build.</p>
 
         <h2>Owning it changed how we work</h2>
         <p>The real payoff arrived after launch. Small updates stopped feeling expensive, so we make them. Ideas are cheap to test, so we test more. The site became something we shape week to week rather than a platform we'd have to migrate off in eighteen months. For any business, that's the quiet argument for owning your own tools: it lowers the cost of every decision that comes after.</p>
