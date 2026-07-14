@@ -434,7 +434,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: var(--space-xl);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 640px) {
