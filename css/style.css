@@ -433,15 +433,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--space-xl);
+  column-gap: clamp(2.25rem, 5vw, 4.25rem);
+  row-gap: 2rem;
   flex-wrap: wrap;
-}
-
-@media (max-width: 640px) {
-  .clients__grid {
-    flex-wrap: wrap;
-    gap: var(--space-lg);
-  }
+  padding: 0 1rem;
 }
 
 .clients__logo {
@@ -456,17 +451,33 @@ p {
   color: var(--text-secondary);
 }
 
+/* Heights normalise visual mass, not literal size:
+   compact marks sit taller, wide wordmarks sit shorter,
+   so every logo reads with equal weight. */
 .clients__logo-img {
-  height: 32px;
+  height: var(--logo-h, 30px);
   width: auto;
-  max-width: 140px;
   object-fit: contain;
-  opacity: 0.5;
-  transition: opacity var(--transition);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
 }
 
 .clients__logo-img:hover {
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.clients__logo-img--bragi    { --logo-h: 34px; }
+.clients__logo-img--trueaxis { --logo-h: 31px; }
+.clients__logo-img--seeker   { --logo-h: 24px; }
+.clients__logo-img--allday   { --logo-h: 29px; }
+.clients__logo-img--dexm     { --logo-h: 29px; }
+.clients__logo-img--incl     { --logo-h: 17px; }
+
+@media (max-width: 640px) {
+  .clients__logo-img { --logo-h: 26px; }
+  .clients__logo-img--bragi    { --logo-h: 30px; }
+  .clients__logo-img--seeker   { --logo-h: 21px; }
+  .clients__logo-img--incl     { --logo-h: 15px; }
 }
 
 /* --- About --- */
