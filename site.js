@@ -52,7 +52,7 @@
             '<li><a href="' + p + 'contact.html" class="footer__link">Contact</a></li>' +
             '<li><a href="https://www.linkedin.com/in/sophie-lucassen/" class="footer__link" target="_blank">LinkedIn</a></li>' +
           '</ul>' +
-          '<p class="footer__copy">Segment \u00B7 Fractional marketing \u00B7 Guernsey \u00A9 2026</p>' +
+          '<p class="footer__copy">Segment \u00B7 Marketing and design studio \u00B7 St Peter Port, Guernsey \u00A9 2026</p>' +
         '</div>' +
       '</div>' +
     '</footer>';
